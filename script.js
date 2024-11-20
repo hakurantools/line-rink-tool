@@ -2,15 +2,17 @@ document.getElementById("convert-btn").addEventListener("click", () => {
     const inputLink = document.getElementById("input-link").value.trim();
     const linkType = document.getElementById("link-type").value;
 
-    let ticket = inputLink.match(/g2\/([a-zA-Z0-9_-]+)/);
-    if (!ticket || ticket.length < 2) {
+    // 入力リンクから ticket を抽出
+    let ticketMatch = inputLink.match(/g2\/([a-zA-Z0-9_-]+)/);
+    if (!ticketMatch || ticketMatch.length < 2) {
         alert("無効なリンク形式です。正しいリンクを入力してください。");
         return;
     }
 
-    ticket = ticket[1];
-    let convertedLink;
+    const ticket = ticketMatch[1];
+    let convertedLink = "";
 
+    // 選択したリンク形式に応じて変換
     switch (linkType) {
         case "report":
             convertedLink = `line://square/report?ticket=${ticket}`;
@@ -29,16 +31,17 @@ document.getElementById("convert-btn").addEventListener("click", () => {
             return;
     }
 
+    // 結果を表示
     const resultDiv = document.getElementById("result");
     const convertedLinkElement = document.getElementById("converted-link");
 
     convertedLinkElement.textContent = convertedLink;
     resultDiv.style.display = "block";
 
+    // コピー機能
     document.getElementById("copy-btn").addEventListener("click", () => {
         navigator.clipboard.writeText(convertedLink)
             .then(() => alert("リンクがコピーされました！"))
             .catch(err => alert("コピーに失敗しました: " + err));
     });
 });
-
