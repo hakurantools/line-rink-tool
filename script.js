@@ -1,47 +1,39 @@
-document.getElementById("convert-btn").addEventListener("click", () => {
-    const inputLink = document.getElementById("input-link").value.trim();
-    const linkType = document.getElementById("link-type").value;
+function convertUrl() {
+    const inputUrl = document.getElementById('urlInput').value;
+    const resultDiv = document.getElementById('result');
+    const copyButton = document.getElementById('copyButton');
 
-    // 入力リンクから ticket を抽出
-    let ticketMatch = inputLink.match(/g2\/([a-zA-Z0-9_-]+)/);
-    if (!ticketMatch || ticketMatch.length < 2) {
-        alert("無効なリンク形式です。正しいリンクを入力してください。");
-        return;
+    const regex = /ti\/g2\/([^?]+)/;
+    const match = inputUrl.match(regex);
+
+    if (match && match[1]) {
+        const ticket = match[1];
+        const linkType = document.querySelector('input[name="linkType"]:checked').value;
+        let resultUrl;
+        
+        switch (linkType) {
+            case "report":
+                resultUrl = `line://square/report?ticket=${ticket}`;
+                break;
+            case "join":
+                resultUrl = `line://square/join?ticket=${ticket}`;
+                break;
+            case "invite":
+                resultUrl = `line://square/ti/g2/${ticket}`;
+                break;
+            case "browser":
+                resultUrl = `https://square-api.line.me/smw/v2/static/sm/html/#/squareCover/${ticket}`;
+                break;
+        }
+
+        resultDiv.innerHTML = resultUrl;
+        copyButton.style.display = 'block';
+    } else {
+        resultDiv.innerHTML = '無効なURLです。';
     }
+}
 
-    const ticket = ticketMatch[1];
-    let convertedLink = "";
-
-    // 選択したリンク形式に応じて変換
-    switch (linkType) {
-        case "report":
-            convertedLink = `line://square/report?ticket=${ticket}`;
-            break;
-        case "invite":
-            convertedLink = `line://square/ti/g2/${ticket}`;
-            break;
-        case "join":
-            convertedLink = `line://square/join?ticket=${ticket}`;
-            break;
-        case "browser":
-            convertedLink = `https://square-api.line.me/smw/v2/static/sm/html/#/squareCover/${ticket}`;
-            break;
-        default:
-            alert("形式を選択してください。");
-            return;
-    }
-
-    // 結果を表示
-    const resultDiv = document.getElementById("result");
-    const convertedLinkElement = document.getElementById("converted-link");
-
-    convertedLinkElement.textContent = convertedLink;
-    resultDiv.style.display = "block";
-
-    // コピー機能
-    document.getElementById("copy-btn").addEventListener("click", () => {
-        navigator.clipboard.writeText(convertedLink)
-            .then(() => alert("リンクがコピーされました！"))
-            .catch(err => alert("コピーに失敗しました: " + err));
-    });
-});
+function copyLink() {
+    const text = document.getElementById('result').textContent;
+    navigator.clipboard.writeText(text).then(() => alert('リンクがコピーされました！'));
+}
