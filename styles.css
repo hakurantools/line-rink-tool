@@ -64,11 +64,13 @@ button:hover {
 .result {
     margin-top: 20px;
     display: none;
+    text-align: center;
 }
 
 #converted-link {
     color: #007acc;
     word-wrap: break-word;
+    margin: 10px 0;
 }
 
 footer {
