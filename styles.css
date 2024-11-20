@@ -1,80 +1,80 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #222;
-    color: #e0e0e0;
+    background-color: #f9f9f9;
+    color: #333;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .container {
     text-align: center;
-    background: #333;
-    border: 1px solid #555;
+    background: #ffffff;
+    border: 1px solid #ccc;
     border-radius: 10px;
     padding: 20px;
-    width: 90%;
+    width: 95%;
     max-width: 500px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-header h1 {
-    font-size: 1.4rem;
-    color: #fff;
-    margin-bottom: 10px;
+h1, h2 {
+    color: #444;
 }
 
-header p {
-    font-size: 0.9rem;
-    color: #ccc;
+.tool-section {
+    margin-bottom: 20px;
 }
 
-.form-group {
-    margin: 20px 0;
-    text-align: left;
-}
-
-label {
-    font-size: 0.9rem;
-    display: block;
-    margin-bottom: 8px;
-    color: #ccc;
-}
-
-input, select, button {
+input, button, .output {
     width: 100%;
     padding: 10px;
-    margin: 5px 0;
-    font-size: 0.9rem;
-    border: 1px solid #555;
+    margin: 10px 0;
+    font-size: 1rem;
     border-radius: 5px;
-    background-color: #444;
-    color: #e0e0e0;
-    outline: none;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+input {
+    background-color: #fefefe;
+}
+
+button {
+    background-color: #eaeaea;
+    color: #333;
+    border: 1px solid #ccc;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 button:hover {
-    background-color: #555;
+    background-color: #dcdcdc;
+    color: #111;
     cursor: pointer;
 }
 
-.result {
-    margin-top: 20px;
-    display: none;
-    text-align: center;
-}
-
-.output {
-    margin-top: 15px;
-    color: #1e90ff;
+.output a {
+    color: #007acc;
+    text-decoration: none;
     word-wrap: break-word;
 }
 
+.output a:hover {
+    text-decoration: underline;
+}
+
 .disclaimer {
+    font-size: 0.9rem;
+    color: #777;
     margin-top: 20px;
-    font-size: 0.8rem;
-    color: #bbb;
+}
+
+.linkType label {
+    display: inline-block;
+    margin: 0 5px;
+    color: #555;
+    font-size: 0.9rem;
 }
