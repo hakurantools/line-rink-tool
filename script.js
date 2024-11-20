@@ -41,3 +41,4 @@ document.getElementById("convert-btn").addEventListener("click", () => {
             .catch(err => alert("コピーに失敗しました: " + err));
     });
 });
+
