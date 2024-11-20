@@ -3,40 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>秘密結社総合本部作成リンク変更ツール</title>
+    <title>秘密結社総合本部リンク変換ツール</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>秘密結社総合本部作成リンク変更ツール</h1>
-            <p>リンクを入力して、希望の形式を選択してください。</p>
-        </header>
-        <main>
-            <div class="form-group">
-                <label for="input-link">変換したいリンクを入力:</label>
-                <input type="text" id="input-link" placeholder="例: https://line.me/ti/g2/xxxx">
+        <h1>秘密結社総合本部リンク変換ツール</h1>
+        
+        <!-- URL変換ツール -->
+        <section class="tool-section">
+            <h2>URL変換ツール</h2>
+            <input type="text" id="urlInput" placeholder="LINEのURLを入力してください">
+            <div class="linkType">
+                <label><input type="radio" name="linkType" value="report" checked> 通報リンク</label>
+                <label><input type="radio" name="linkType" value="join"> 参加リンク</label>
+                <label><input type="radio" name="linkType" value="invite"> 招待リンク</label>
+                <label><input type="radio" name="linkType" value="browser"> ブラウザ用リンク</label>
             </div>
-            <div class="form-group">
-                <label for="link-type">変換形式を選択:</label>
-                <select id="link-type">
-                    <option value="report">通報リンク</option>
-                    <option value="invite">招待リンク</option>
-                    <option value="join">参加リンク</option>
-                    <option value="browser">ブラウザ用リンク</option>
-                </select>
-            </div>
-            <button id="convert-btn">リンクを変換</button>
-            <div id="result" class="result">
-                <h2>変換結果:</h2>
-                <p id="converted-link">ここに変換されたリンクが表示されます</p>
-                <button id="copy-btn">リンクをコピー</button>
-            </div>
-        </main>
-        <footer>
-            <p>※このツールは開発者が責任を負いません。ご利用は自己責任でお願いします。</p>
-        </footer>
+            <button onclick="convertUrl()">変換する</button>
+            <div id="result" class="output"></div>
+            <button id="copyButton" onclick="copyLink()" style="display:none;">リンクをコピー</button>
+        </section>
+
+        <!-- 共有リンク作成ツール -->
+        <section class="tool-section">
+            <h2>共有リンク作成</h2>
+            <input type="text" id="shareLinkInput" placeholder="共有する内容を入力">
+            <button onclick="generateShareLink()">共有リンクを生成</button>
+            <div id="shareLinkOutput" class="output"></div>
+            <button id="copyShareButton" onclick="copyShareLink()" style="display:none;">共有リンクをコピー</button>
+        </section>
+        
+        <!-- Unicode解析ツール -->
+        <section class="tool-section">
+            <h2>Unicode解析ツール</h2>
+            <input type="text" id="unicodeInput" placeholder="解析するテキストを入力">
+            <button onclick="analyzeUnicode()">解析する</button>
+            <div id="unicodeResult" class="output"></div>
+        </section>
+
+        <p class="disclaimer">注意: このツールの使用によって生じた問題について、開発者は一切の責任を負いません。</p>
     </div>
-    <script src="scripts.js"></script>
+
+    <script src="script.js"></script>
 </body>
 </html>
